@@ -1,0 +1,20 @@
+.jumbotron {
+    background: url('../images/alaska-sky.jpg') no-repeat center;
+    margin-bottom: 0px;
+    color: blanchedalmond;
+}
+
+.col-md-4 {
+    padding-top: 20px;
+}
+
+.col-md-4 h2 {
+    color: #007BFF;
+}
+
+footer p {
+    background-color: #007BFF;
+    color: blanchedalmond;
+    text-align: center;
+    height: 30px;
+}
