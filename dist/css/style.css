@@ -17,3 +17,13 @@ footer p {
     color: blanchedalmond;
     text-align: center;
 }
+
+footer a {
+    color: blanchedalmond;
+}
+
+footer a:hover {
+    font-weight: bold;
+    color: blanchedalmond;
+    text-decoration: none;
+}
