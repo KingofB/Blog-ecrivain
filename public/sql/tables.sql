@@ -25,7 +25,7 @@ ENGINE=INNODB;
 
 CREATE TABLE Comment (
     id INT UNSIGNED AUTO_INCREMENT,
-    article_id INT UNSIGNED NOT NULL,
+    article_id TINYINT UNSIGNED NOT NULL,
 	author_id INT UNSIGNED,
 	content TEXT NOT NULL,
 	comment_date DATETIME NOT NULL,
