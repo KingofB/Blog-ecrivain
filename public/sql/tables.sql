@@ -167,6 +167,3 @@ VALUES (1, 2, '2019-10-11 10:00:00', 'Les écrivains me fascineront toujours pou
         (6, 4, '2019-11-19 22:10:00', 'Ouais pas facile en effet ! Punaise, fin septembre déjà des T° négatives et de la neige. Brrrrr...'),
         (6, 1, '2019-11-20 02:15:00', 'La suite tardera un peu plus d\'une semaine, je suis en salon du livre à Saint-Malo, désolé.');
 
-
-
-
