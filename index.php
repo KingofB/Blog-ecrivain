@@ -32,7 +32,7 @@
         </div>
     </nav>
 
-    <main role="main">
+    <main role="main bg-primary">
         <div class="jumbotron mt-5 text-white">
             <div class="container">
                 <h1 class="display-3">Billet simple pour l'Alaska</h1>
@@ -42,8 +42,8 @@
             </div>
         </div>
 
-        <div class="container">
-            <h2 class="text-primary text-center mt-3 pt-3" id="chapters">Chapitres en cours</h2>
+        <div class="container-fluid">
+            <h2 class="text-primary text-center mt-3 pt-3" id="chapters">Chapitres en cours de commentaires</h2>
             <div class="row">
                 <?php
                 // Connexion bdd :
@@ -72,8 +72,8 @@
             </div>
         </div>
 
-        <div class="container">
-            <h2 class="text-primary text-center mt-3 pt-3" id="archives">Archives - chapitres précédents</h2>
+        <div class="container-fluid">
+            <h2 class="text-primary text-center mt-3 pt-3" id="archives">Chapitres précédents</h2>
             <div class="row">
                 <?php
                 // Connexion bdd :
@@ -83,10 +83,10 @@
                     die('Erreur : ' . $e->getMessage());
                 }
                 // Récup des 3 derniers articles :
-                $req = $db->query('SELECT id, title, image, summary FROM Article ORDER BY publication_date DESC LIMIT 3, 6');
+                $req = $db->query('SELECT id, title, image, summary FROM Article ORDER BY publication_date DESC LIMIT 3, 3');
                 while ($donnees = $req->fetch()) {
                     ?>
-                    <div class="card col-md-4  pt-3" style="width: 18rem;">
+                    <div class="card col-md-3  pt-3" style="width: 18rem;">
                         <img src="<?php echo 'public/images/' . $donnees['image']; ?>" class="card-img-top" alt="traîneau de chiens">
                         <div class="card-body">
                             <h3 class="card-title text-primary"><?php echo htmlspecialchars($donnees['title']); ?></h3>
@@ -96,15 +96,37 @@
                     </div>
                 <?php
                 }
-                // Fin de la boucle des articles :
+                // Fin de la boucle des articles 3 à 6 :
+                $req->closeCursor();
+                ?>
+                <div class="card col-md-3  pt-3" style="width: 18rem;">
+                    <h3 class="card-title text-primary text-center">Chapitres archivés</h3>
+                    <?php
+                    // Connexion bdd :
+                    try {
+                        $db = new PDO('mysql:host=localhost;dbname=proj4;charset=utf8', 'root', 'Op04Er08Ki16');
+                    } catch (Exception $e) {
+                        die('Erreur : ' . $e->getMessage());
+                    }
+                    // Récup des 3 derniers articles :
+                    $req = $db->query('SELECT id, title FROM Article ORDER BY publication_date DESC LIMIT 6, 1');
+                    while ($donnees = $req->fetch()) {
+                    ?>
+                    <ul>
+                        <li><a href="http://localhost/proj4/commentView.php?article-id=<?php echo $_GET['id']; ?>"><?php echo htmlspecialchars($donnees['title']); ?></a></li>
+                    </ul>
+                </div>
+                <?php
+                }
+                // Fin de la boucle des archives :
                 $req->closeCursor();
                 ?>
             </div>
         </div>
     </main>
 
-    <footer class="container-fluid text-white text-center bg-primary">
-        <p>Copyright © <a class="text-light" href="http://cv-devweb.dblanchet.fr/" target="blank">David Blanchet</a> - 2019. Tous droits réservés</p>
+    <footer class=" container-fluid text-white text-center bg-primary">
+        <p>Copyright © <a class="text-light" href="http://cv-devweb.dblanchet.fr/" target="blank">David Blanchet</a> - 2019/2020. Tous droits réservés</p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
