@@ -1,3 +1,7 @@
+<?php
+require('classe/view/commentView.php');
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -43,7 +47,7 @@
         </div>
 
         <div class="container-fluid">
-            <h2 class="text-primary text-center mt-3 pt-3" id="chapters">Chapitres en cours de commentaires</h2>
+            <h2 class="text-primary text-center mt-3 pt-3" id="chapters">Derniers chapitres - à commenter</h2>
             <div class="row">
                 <?php
                 // Connexion bdd :
@@ -73,7 +77,7 @@
         </div>
 
         <div class="container-fluid">
-            <h2 class="text-primary text-center mt-3 pt-3" id="archives">Chapitres précédents</h2>
+            <h2 class="text-primary text-center mt-3 pt-3" id="chapters-closed">Chapitres précédents - à découvrir uniquement</h2>
             <div class="row">
                 <?php
                 // Connexion bdd :
@@ -91,7 +95,7 @@
                         <div class="card-body">
                             <h3 class="card-title text-primary"><?php echo htmlspecialchars($donnees['title']); ?></h3>
                             <p class="card-text"><?php echo nl2br(htmlspecialchars($donnees['summary'])); ?></p>
-                            <a href="#" class="btn btn-primary">Lire l'extrait - Commenter</a>
+                            <a href="#" class="btn btn-primary">Lire l'extrait</a>
                         </div>
                     </div>
                 <?php
@@ -99,8 +103,8 @@
                 // Fin de la boucle des articles 3 à 6 :
                 $req->closeCursor();
                 ?>
-                <div class="card col-md-3  pt-3" style="width: 18rem;">
-                    <h3 class="card-title text-primary text-center">Chapitres archivés</h3>
+                <div class="card col-md-3  pt-3" style="width: 18rem;" id="archives">
+                    <h3 class="card-title text-primary text-center">Archives</h3>
                     <?php
                     // Connexion bdd :
                     try {
@@ -113,7 +117,7 @@
                     while ($donnees = $req->fetch()) {
                     ?>
                     <ul>
-                        <li><a href="http://localhost/proj4/commentView.php?article-id=<?php echo $_GET['id']; ?>"><?php echo htmlspecialchars($donnees['title']); ?></a></li>
+                        <li><a href="http://localhost/proj4/commentView.php?article-id=<?php echo $donnees['id']; ?>"><?php echo htmlspecialchars($donnees['title']); ?></a></li>
                     </ul>
                 </div>
                 <?php
