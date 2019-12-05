@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Jean Forteroche présente, en avant-première sur son blog, son dernier roman : Billet simple pour l'Alaska.">
     <title>Blog Jean Forteroche - écrivain</title>
-    <link href="dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
     <link href="public/css/style.css" rel="stylesheet">
 </head>
 
@@ -32,30 +32,34 @@
         </div>
     </nav>
 
-    <main role="main bg-primary">
+    <main role="main">
         <div class="jumbotron mt-5 text-white">
             <div class="container">
                 <h1 class="display-3">Billet simple pour l'Alaska</h1>
                 <p>Jean Forteroche, auteur de récits d'aventure, vous fait découvrir en avant-première, au travers de ce blog, son dernier roman. Vous pourrez y lire des extraits de chapitres et y réagir en les commentant. L'auteur désire ainsi, faire évoluer
                     le rôle de lecteur et sa relation à l'auteur.</p>
-                <p><a class="btn btn-primary btn-lg" href="#chapters" role="button">Extraits et commentaires</a></p>
+                <?php
+                $last_article = $last_3_articles[0];
+                ?>
+                <p><a class="btn btn-primary btn-lg" href="http://localhost/proj4/article.php?article_id=<?php echo $last_article['id']; ?>" role="button">Découvrir le dernier extrait</a></p>
+
             </div>
         </div>
 
         <div class="container-fluid">
-            <h2 class="text-primary text-center mt-3 pt-3" id="chapters">Derniers chapitres - à commenter</h2>
+            <h2 class="text-primary text-center" id="chapters">Découvrez et commentez mes derniers chapitres</h2>
             <div class="row">
                 <?php
-                while ($donnees = $last_3_articles->fetch()) {
-                ?>
-                <div class="card col-md-4  pt-3" style="width: 18rem;">
-                    <img src="<?php echo '/proj4/public/images/' . $donnees['image']; ?>" class="card-img-top" alt="traîneau de chiens">
-                    <div class="card-body">
-                        <h3 class="card-title text-primary"><?php echo htmlspecialchars($donnees['title']); ?></h3>
-                        <p class="card-text"><?php echo nl2br(htmlspecialchars($donnees['summary'])); ?></p>
-                        <a href="#" class="btn btn-primary">Lire l'extrait</a>
+                foreach ($last_3_articles as $article) {
+                    ?>
+                    <div class="card col-md-4  pt-3" style="width: 18rem;">
+                        <img src="<?php echo '/proj4/public/images/' .  $article['image']; ?>" class="card-img-top" alt="traîneau de chiens">
+                        <div class="card-body">
+                            <h3 class="card-title text-primary"><?php echo htmlspecialchars($article['title']); ?></h3>
+                            <p class="card-text"><?php echo nl2br(htmlspecialchars($article['summary'])); ?></p>
+                            <a href="http://localhost/proj4/article.php?article_id=<?php echo  $article['id']; ?>" class="btn btn-primary">Lire l'extrait</a>
+                        </div>
                     </div>
-                </div>
                 <?php
                 }
                 ?>
@@ -65,31 +69,31 @@
         <div class="container-fluid">
             <div class="row">
                 <?php
-                while ($donnees = $articles_4_to_6->fetch()) {
-                ?>
-                <div class="card col-md-3  pt-3" style="width: 18rem;">
-                    <img src="<?php echo '/proj4/public/images/' . $donnees['image']; ?>" class="card-img-top" alt="traîneau de chiens">
-                    <div class="card-body">
-                        <h3 class="card-title text-primary"><?php echo htmlspecialchars($donnees['title']); ?></h3>
-                        <p class="card-text"><?php echo nl2br(htmlspecialchars($donnees['summary'])); ?></p>
-                        <a href="#" class="btn btn-primary">Lire l'extrait</a>
+                foreach ($articles_4_to_6 as $article) {
+                    ?>
+                    <div class="card col-md-3  pt-3" style="width: 18rem;">
+                        <img src="<?php echo '/proj4/public/images/' . $article['image']; ?>" class="card-img-top" alt="traîneau de chiens">
+                        <div class="card-body">
+                            <h3 class="card-title text-primary"><?php echo htmlspecialchars($article['title']); ?></h3>
+                            <p class="card-text"><?php echo nl2br(htmlspecialchars($article['summary'])); ?></p>
+                            <a href="http://localhost/proj4/article.php?article_id=<?php echo $article['id']; ?>" class="btn btn-primary">Lire l'extrait</a>
+                        </div>
                     </div>
-                </div>
                 <?php
                 }
                 ?>
                 <div class="card col-md-3  pt-3" style="width: 18rem;" id="archives">
                     <h3 class="card-title text-primary text-center">Archives</h3>
                     <?php
-                    while ($donnees = $archives->fetch()) {
-                    ?>
-                    <ul>
-                        <li><a href="http://localhost/proj4/commentView.php?article-id=<?php echo $donnees['id']; ?>"><?php echo htmlspecialchars($donnees['title']); ?></a></li>
-                    </ul>
+                    foreach ($archives as $article) {
+                        ?>
+                        <ul>
+                            <li><a href="http://localhost/proj4/article.php?article_id=<?php echo $article['id']; ?>"><?php echo htmlspecialchars($article['title']); ?></a></li>
+                        </ul>
                 </div>
-                <?php
-                }
-                ?>
+            <?php
+            }
+            ?>
             </div>
         </div>
     </main>
@@ -98,12 +102,8 @@
         <p>Copyright © <a class="text-light" href="http://cv-devweb.dblanchet.fr/" target="blank">David Blanchet</a> - 2019/2020. Tous droits réservés</p>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script>
-        window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')
-    </script>
-    <script src="dist/js/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

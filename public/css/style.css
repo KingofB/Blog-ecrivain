@@ -1,5 +1,6 @@
 .jumbotron {
     background: url('../images/alaska-sky.jpg') no-repeat center;
+    margin-bottom: 0;
 }
 
 footer a:hover {
