@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Jean Forteroche présente, en avant-première sur son blog, son dernier roman : Billet simple pour l'Alaska.">
     <title>Blog Jean Forteroche - écrivain</title>
-    <link href="/proj4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
     <link href="/proj4/public/css/style.css" rel="stylesheet">
 </head>
 
@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Accueil<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="index.php">Accueil<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Se connecter</a>
@@ -33,26 +33,41 @@
     </nav>
 
     <div class="container">
-        <div class="card mb-3">
+        <div class="card mb-3 mt-5">
             <img src="<?php echo '/proj4/public/images/' . $article['image']; ?>" class="card-img-top" alt="...">
             <div class="card-body">
-                <h3 class="card-title"><?php echo $article['title']; ?></h3>
-                <h5 class="card-title"><?php echo $article['summary']; ?></h5>
+                <h3 class="card-title text-primary"><?php echo $article['title']; ?></h3>
+                <h5 class="card-title text-info"><?php echo $article['summary']; ?></h5>
                 <p class="card-text"><?php echo $article['content']; ?></p>
             </div>
         </div>
     </div>
 
-    <footer class=" container-fluid text-white text-center bg-primary">
+
+
+
+
+    <div class="card text-center">
+        <h4 class="bg-primary text-white pb-1">Commentaires</h4>
+        <?php
+        foreach ($comments as $comment) {
+        ?>
+        <h6 class="card-header border border-primary text-primary"><?php echo $comment['pseudo'] . ' le : ' . $comment['comment_date_fr']; ?></h5>
+        <div class="card-body">
+            <p class="card-text"><?php echo $comment['content']; ?></p>
+            <a href="#" class="btn btn-outline-primary btn-sm">Signaler</a>
+        </div>
+        <?php
+        }
+        ?>
+    </div>
+
+    <footer class="container-fluid text-white text-center bg-primary">
         <p>Copyright © <a class="text-light" href="http://cv-devweb.dblanchet.fr/" target="blank">David Blanchet</a> - 2019/2020. Tous droits réservés</p>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script>
-        window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')
-    </script>
-    <script src="/proj4/dist/js/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="/proj4/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

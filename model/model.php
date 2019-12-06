@@ -9,12 +9,6 @@ function getArticle($article_id)
         die('Erreur : ' . $e->getMessage());
     }
     // Récup de l'article :
-    /*
-    $article = $db->prepare('SELECT title, image, summary, content FROM Article WHERE id = ?');
-    $result = $article->execute([(int) $article_id]);
-    $article->execute([$article_id])
-    */
-
     $query = "SELECT title, image, summary, content FROM Article WHERE id = :id";
     $sth = $db->prepare($query);
     $sth->execute([':id' => $article_id]);
@@ -65,6 +59,25 @@ function getArchives()
 
     // Récup des plus vieux articles :
     return $db->query("SELECT id, title FROM Article ORDER BY publication_date DESC LIMIT 6, $limit")->fetchAll();
+}
+
+function getComments ($article_id)
+{
+    // Connexion bdd :
+    try {
+        $db = new PDO('mysql:host=localhost;dbname=proj4;charset=utf8', 'root', 'Op04Er08Ki16');
+    } catch (Exception $e) {
+        die('Erreur : ' . $e->getMessage());
+    }
+
+    // Récup des commentaires d'un article :
+    $comments = $db->prepare('SELECT Comment.id, Member.pseudo AS pseudo, content, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr
+    FROM Comment
+    INNER JOIN Member ON Comment.author_id = Member.id
+    WHERE article_id = ? ORDER BY comment_date DESC');
+    $comments->execute([$article_id]);
+
+    return $comments->fetchAll();
 }
 
 ?>
