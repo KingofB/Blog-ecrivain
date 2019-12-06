@@ -9,7 +9,7 @@ function getArticle($article_id)
         die('Erreur : ' . $e->getMessage());
     }
     // Récup de l'article :
-    $query = "SELECT title, image, summary, content FROM Article WHERE id = :id";
+    $query = "SELECT title, image, alt_image, summary, content FROM Article WHERE id = :id";
     $sth = $db->prepare($query);
     $sth->execute([':id' => $article_id]);
     $res = $sth->fetchAll()[0];
@@ -27,7 +27,7 @@ function getThreeLastsArticles()
         die('Erreur : ' . $e->getMessage());
     }
     // Récup des 3 derniers articles :
-    return $db->query('SELECT id, title, image, summary FROM Article ORDER BY publication_date DESC LIMIT 0, 3')->fetchAll();
+    return $db->query('SELECT id, title, image, alt_image, summary FROM Article ORDER BY publication_date DESC LIMIT 0, 3')->fetchAll();
 
 }
 
@@ -40,7 +40,7 @@ function getLastArticlesFourToSix()
         die('Erreur : ' . $e->getMessage());
     }
     // Récup des derniers articles (4 à 6) :
-    return $db->query('SELECT id, title, image, summary FROM Article ORDER BY publication_date DESC LIMIT 3, 3')->fetchAll();
+    return $db->query('SELECT id, title, image, alt_image, summary FROM Article ORDER BY publication_date DESC LIMIT 3, 3')->fetchAll();
 
 }
 
