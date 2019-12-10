@@ -1,5 +1,3 @@
-<?php $homePath = '/proj4/index.php'; ?>
-
 <?php ob_start(); ?>
 <div class="container">
     <div class="card mb-3 mt-5">
@@ -44,4 +42,4 @@
 </div>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('base.php'); ?>

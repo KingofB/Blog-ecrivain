@@ -1,8 +1,16 @@
 <?php
-require('model/model.php');
+require('controller/controller.php');
 
-$last_3_articles = getThreeLastsArticles();
-$articles_4_to_6 = getLastArticlesFourToSix();
-$archives = getArchives();
-
-require('view/homeView.php');
+if (isset($_GET['action'])) {
+    if ($_GET['action'] == 'article') {
+        if (isset($_GET['article_id']) && $_GET['article_id'] > 0) {
+            article();
+        } else {
+            echo 'Erreur : aucun identifiant d\'article envoyé !';
+        }
+    } else if ($_GET['action'] == 'home') {
+        home();
+    }
+} else {
+    home();
+}
