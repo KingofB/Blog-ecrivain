@@ -15,3 +15,20 @@ function home()
     $archives = getArchives();
     require('view/homeView.php');
 }
+
+function comment($article_id, $pseudo, $content)
+{
+    $pseudo = strtolower(htmlspecialchars($pseudo));
+    $respPseudo = pseudoExists($pseudo);
+    if ($respPseudo === 1) {
+        $author_id = pseudoId($pseudo);
+        addComment($article_id, $author_id, $content);
+        header('Location: index.php?action=article&article_id=' . $article_id);
+    } else {
+        echo 'Ce pseudo est inconnu, vous devez vous inscrire pour ajouter un commentaire.';
+        die;
+        header('Location: index.php?action=connexion');
+    }
+}
+
+//header('Location: index.php?action=article&article_id=' . $article_id);

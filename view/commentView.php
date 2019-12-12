@@ -15,19 +15,21 @@
 </div>
 
 <div class="container text-center mt-4">
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text bg-primary text-white" id="basic-addon1">Pseudo</span>
+    <form action="index.php?action=addComment&amp;article_id=<?= $article['id'] ?>" method="post">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-primary text-white" id="basic-addon1">Pseudo</span>
+            </div>
+            <input type="text" name="pseudo" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
         </div>
-        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-    </div>
-    <div class="input-group mb-4">
-        <div class="input-group-prepend">
-            <span class="input-group-text bg-primary text-white">Commentaire</span>
+        <div class="input-group mb-4">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-primary text-white">Commentaire</span>
+            </div>
+            <textarea name="content" class="form-control" aria-label="With textarea"></textarea>
         </div>
-        <textarea class="form-control" aria-label="With textarea"></textarea>
-    </div>
-    <button type="button" class="btn btn-outline-primary mb-4">Ajouter</button>
+        <button type="submit" class="btn btn-outline-primary mb-4">Ajouter</button>
+    </form>
 </div>
 
 <div class="card text-center">

@@ -15,14 +15,13 @@ function getArticle(int $article_id)
 {
     $db = dbConnect();
     // Récup de l'article :
-    $query = "SELECT title, image, alt_image, summary, content FROM Article WHERE id = :id";
+    $query = "SELECT id, title, image, alt_image, summary, content FROM Article WHERE id = :id";
     $sth = $db->prepare($query);
     $sth->execute([':id' => $article_id]);
     $res = $sth->fetchAll()[0];
 
     return $res;
 }
-
 
 function getThreeLastsArticles()
 {
@@ -37,7 +36,6 @@ function getLastArticlesFourToSix()
     // Récup des derniers articles (4 à 6) :
     return $db->query('SELECT id, title, image, alt_image, summary FROM Article ORDER BY publication_date DESC LIMIT 3, 3')->fetchAll();
 }
-
 
 function getArchives()
 {
@@ -61,4 +59,31 @@ function getComments (int $article_id)
     $comments->execute([$article_id]);
 
     return $comments->fetchAll();
+}
+
+function addComment(int $article_id, int $author_id, string $content)
+{
+    $db = dbConnect();
+    // Ajout d'un commentaire sur un article :
+
+    $query = $db->prepare('INSERT INTO comment(id, article_id, author_id, content, comment_date)
+    VALUES (null, ?, ?, ?, NOW())');
+
+    return $query->execute([$article_id, $author_id, $content]);
+}
+
+function pseudoExists(string $pseudo): int
+{
+    $db = dbConnect();
+    $req = $db->query("SELECT COUNT(pseudo) FROM Member WHERE LOWER(pseudo)='$pseudo'");
+
+    return (int) $req->fetchColumn();
+}
+
+function pseudoId(string $pseudo): int
+{
+    $db = dbConnect();
+    $author_id = $db->query("SELECT id FROM Member WHERE LOWER(pseudo)='$pseudo'")->fetchColumn();
+
+    return (int) $author_id;
 }
