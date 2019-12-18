@@ -8,6 +8,8 @@ if (isset($_GET['action'])) {
         home();
     } elseif ($_GET['action'] == 'addComment') {
         addCommentController();
+    } elseif ($_GET['action'] == 'connexion') {
+        connexionController();
     }
 } else {
     home();
@@ -33,4 +35,9 @@ function addCommentController()
     } else {
         echo 'Erreur : aucun identifiant d\'article envoyé !';
     }
+}
+
+function connexionController()
+{
+
 }

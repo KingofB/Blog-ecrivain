@@ -31,4 +31,3 @@ function comment($article_id, $pseudo, $content)
     }
 }
 
-//header('Location: index.php?action=article&article_id=' . $article_id);

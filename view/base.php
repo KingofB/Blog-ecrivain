@@ -10,9 +10,9 @@
     <link href="public/css/style.css" rel="stylesheet">
 </head>
 
-<body cz-shortcut-listen="true">
+<body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
-        <a class="navbar-brand" href="#">J. FORTEROCHE - écrivain</a>
+        <a class="navbar-brand" href="http://localhost/proj4/index.php?action=home">J. FORTEROCHE - écrivain</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,7 +23,7 @@
                     <a class="nav-link" href="http://localhost/proj4/index.php?action=home">Accueil<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Se connecter</a>
+                    <a class="nav-link" href="http://localhost/proj4/index.php?action=connexion">Se connecter</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#archives">Archives</a>
@@ -34,8 +34,13 @@
 
     <?= $content ?>
 
-    <footer class=" container-fluid text-white text-center bg-primary">
-        <p>Copyright © <a class="text-light" href="http://cv-devweb.dblanchet.fr/" target="blank">David Blanchet</a> - 2019/2020. Tous droits réservés</p>
+
+    <footer class="container-fluid text-white text-center">
+        <div class="card bg-primary">
+            <div class="card-body">
+                <p>Copyright © <a class="text-light" href="http://cv-devweb.dblanchet.fr/" target="blank">David Blanchet</a> - 2019/2020. Tous droits réservés</p>
+            </div>
+        </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
