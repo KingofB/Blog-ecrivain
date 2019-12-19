@@ -31,3 +31,21 @@ function comment($article_id, $pseudo, $content)
     }
 }
 
+function connexion()
+{
+    require('view/connexionView.php');
+}
+
+function register()
+{
+    // Si erreurs on reste sur la page de connexion
+    require('/proj4/index.php?action=connexion');
+    // Si c'est bon redirection sur l'accueil
+    header('/proj4/index.php?action=home');
+}
+
+function member()
+{
+    $member = getMember();
+    $_SESSION['pseudo'] = $member['pseudo'];
+}

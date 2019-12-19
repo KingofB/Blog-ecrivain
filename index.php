@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require('controller/controller.php');
 
 if (isset($_GET['action'])) {
@@ -9,7 +11,7 @@ if (isset($_GET['action'])) {
     } elseif ($_GET['action'] == 'addComment') {
         addCommentController();
     } elseif ($_GET['action'] == 'connexion') {
-        connexionController();
+        connexion();
     }
 } else {
     home();
@@ -37,7 +39,3 @@ function addCommentController()
     }
 }
 
-function connexionController()
-{
-
-}

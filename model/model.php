@@ -87,3 +87,13 @@ function pseudoId(string $pseudo): int
 
     return (int) $author_id;
 }
+
+function addMember()
+{
+
+}
+
+function getMember()
+{
+
+}
