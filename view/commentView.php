@@ -1,4 +1,7 @@
-<?php ob_start(); ?>
+<?php
+    $connexion = 'Se connecter';
+    ob_start();
+?>
 <div class="container">
     <div class="card mb-3 mt-5">
         <img src="<?= '/proj4/public/images/' . $article['image'] ?>" class="card-img-top" alt="<?= $article['alt_image'] ?>">

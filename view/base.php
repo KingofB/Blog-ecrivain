@@ -1,3 +1,5 @@
+<?php $connexion = 'Se connecter'; ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -12,7 +14,7 @@
 
 <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
-        <a class="navbar-brand" href="http://localhost/proj4/index.php?action=home">J. FORTEROCHE - écrivain</a>
+        <a class="navbar-brand" href="/proj4/index.php?action=home">J. FORTEROCHE - écrivain</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,7 +25,7 @@
                     <a class="nav-link" href="/proj4/index.php?action=home">Accueil<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost/proj4/index.php?action=connexion">Se connecter</a>
+                    <a class="nav-link" href="/proj4/index.php?action=connexion"><?= $connexion ?></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#archives">Archives</a>
