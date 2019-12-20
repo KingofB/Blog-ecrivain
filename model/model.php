@@ -65,7 +65,6 @@ function addComment(int $article_id, int $author_id, string $content)
 {
     $db = dbConnect();
     // Ajout d'un commentaire sur un article :
-
     $query = $db->prepare('INSERT INTO comment(id, article_id, author_id, content, comment_date)
     VALUES (null, ?, ?, ?, NOW())');
 
@@ -88,12 +87,19 @@ function pseudoId(string $pseudo): int
     return (int) $author_id;
 }
 
-function addMember()
+function addMember(string $pseudo, string $email, string $password)
 {
+    $db = dbConnect();
+    $query = $db->prepare('INSERT INTO member(id, pseudo, email, passw)
+    VALUES (null, ?, ?, ?)');
 
+    return $query->execute([$pseudo, $email, $password]);
 }
 
-function getMember()
+function getMember(string $pseudo)
 {
+    $db = dbConnect();
+    $req = $db->query("SELECT id, pseudo, email, passw FROM Member WHERE LOWER(pseudo)='$pseudo'");
 
+    return $req->fetchAll()[0];
 }

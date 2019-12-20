@@ -15,11 +15,11 @@ ob_start();
         <form class="col-md-6 pt-5" action="/proj4/index.php?action=connexion" method="POST">
             <div class="form-group">
                 <label for="exampleInputEmail1">Pseudo</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter pseudo">
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrer pseudo">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrer email">
                 <small id="emailHelp" class="form-text text-muted">Votre email, ainsi que toutes vos données personnelles, ne seront divulgués à aucune autre société ou site.</small>
             </div>
             <div class="form-group">
@@ -30,7 +30,7 @@ ob_start();
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">J'accepte les règles de confidentialité et d'utilisation de ce site.</label>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" id="newMember" class="btn btn-primary">Valider</button>
         </form>
     </div>
 </div>

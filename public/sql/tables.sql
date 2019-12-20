@@ -40,7 +40,7 @@ CREATE TABLE Member (
     id INT UNSIGNED AUTO_INCREMENT,
     pseudo VARCHAR(50),
     email VARCHAR(100),
-    passw CHAR(40),
+    passw CHAR(255),
     PRIMARY KEY (id)
 )
 ENGINE=INNODB;
