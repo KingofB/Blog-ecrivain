@@ -26,19 +26,24 @@ function comment($article_id, $pseudo, $content)
         header('Location: index.php?action=article&article_id=' . $article_id);
     } else {
         echo 'Ce pseudo est inconnu, vous devez vous inscrire pour ajouter un commentaire.';
-        die;
         header('Location: index.php?action=connexion');
     }
 }
 
-function connexion()
+function deconnection()
+{
+   session_destroy();
+   header('Location: index.php?action=home');
+}
+
+function connection()
 {
     $errors = [];
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors = register();
 
         if (empty($errors)) {
-            header('/proj4/index.php?action=home');
+            header('Location: index.php?action=home');
         }
     }
 
@@ -74,6 +79,7 @@ function register(): array
         $email = htmlspecialchars($_POST['email']);
         $password = password_hash(htmlspecialchars($_POST['password']), PASSWORD_DEFAULT);
         addMember($pseudo, $email, $password);
+        member($pseudo);
     }
 
     return $errors;

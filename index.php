@@ -4,14 +4,16 @@ session_start();
 require('controller/controller.php');
 
 if (isset($_GET['action'])) {
-    if ($_GET['action'] == 'article') {
+    if ($_GET['action'] === 'article') {
         articleController();
-    } elseif ($_GET['action'] == 'home') {
+    } elseif ($_GET['action'] === 'home') {
         home();
-    } elseif ($_GET['action'] == 'addComment') {
+    } elseif ($_GET['action'] === 'addComment') {
         addCommentController();
-    } elseif ($_GET['action'] == 'connexion') {
-        connexion();
+    } elseif ($_GET['action'] === 'connexion') {
+        connection();
+    } elseif ($_GET['action'] === 'deconnexion') {
+        deconnection();
     }
 } else {
     home();

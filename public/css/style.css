@@ -13,3 +13,7 @@ footer a:hover {
         min-width: 100%;
     }
 }
+
+.error {
+    color: red;
+}

@@ -1,4 +1,10 @@
-<?php $connexion = 'Se connecter'; ?>
+<?php
+    if (!empty($_SESSION['pseudo'])) {
+        $connexion = '<a class="nav-link" href="/proj4/index.php?action=deconnexion">Se déconnecter</a>';
+    } else {
+        $connexion = '<a class="nav-link" href="/proj4/index.php?action=connexion">Se connecter</a>';
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -25,7 +31,7 @@
                     <a class="nav-link" href="/proj4/index.php?action=home">Accueil<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/proj4/index.php?action=connexion"><?= $connexion ?></a>
+                    <?= $connexion ?>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#archives">Archives</a>

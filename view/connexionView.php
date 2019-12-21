@@ -1,7 +1,6 @@
 <?php
 $connexion = 'Se connecter';
 ob_start();
-var_dump($errors);
 ?>
 <div class="container-fluid mt-5 mb-5">
     <div class="row">
@@ -17,11 +16,13 @@ var_dump($errors);
             <div class="form-group">
                 <label for="exampleInputEmail1">Pseudo</label>
                 <input type="text" name="pseudo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrer pseudo">
+                <span class="error">
                 <?php
                 if (isset($errors['pseudo'])) {
                     echo $errors['pseudo'];
                 }
                 ?>
+                </span>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
