@@ -1,6 +1,7 @@
 <?php
 $connexion = 'Se connecter';
 ob_start();
+var_dump($errors);
 ?>
 <div class="container-fluid mt-5 mb-5">
     <div class="row">
@@ -16,18 +17,38 @@ ob_start();
             <div class="form-group">
                 <label for="exampleInputEmail1">Pseudo</label>
                 <input type="text" name="pseudo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrer pseudo">
+                <?php
+                if (isset($errors['pseudo'])) {
+                    echo $errors['pseudo'];
+                }
+                ?>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
                 <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrer email">
+                <?php
+                if (isset($errors['email'])) {
+                    echo $errors['email'];
+                }
+                ?>
                 <small id="emailHelp" class="form-text text-muted">Votre email, ainsi que toutes vos données personnelles, ne seront divulgués à aucune autre société ou site.</small>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
                 <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
+                <?php
+                if (isset($errors['password'])) {
+                    echo $errors['password'];
+                }
+                ?>
             </div>
             <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" name="checkBoxRGPD" id="exampleCheck1">
+                <?php
+                if (isset($errors['checkBoxRGPD'])) {
+                    echo $errors['checkBoxRGPD'];
+                }
+                ?>
                 <label class="form-check-label" for="exampleCheck1">J'accepte les règles de confidentialité et d'utilisation de ce site.</label>
             </div>
             <button type="submit" id="newMember" class="btn btn-primary">Valider</button>
