@@ -25,8 +25,7 @@ function comment($article_id, $pseudo, $content)
         addComment($article_id, $author_id, $content);
         header('Location: index.php?action=article&article_id=' . $article_id);
     } else {
-        echo 'Ce pseudo est inconnu, vous devez vous inscrire pour ajouter un commentaire.';
-        header('Location: index.php?action=connexion');
+        throw new Exception('Ce pseudo est inconnu, vous devez vous inscrire pour ajouter un commentaire.');
     }
 }
 
