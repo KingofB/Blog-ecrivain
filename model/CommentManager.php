@@ -1,4 +1,6 @@
 <?php
+namespace dblanchet\proj4\model;
+
 class CommentManager extends Manager
 {
     public function getComments(int $article_id)

@@ -1,4 +1,6 @@
 <?php
+namespace dblanchet\proj4\model;
+
 class ArticleManager extends Manager
 {
     public function getArticle(int $article_id)

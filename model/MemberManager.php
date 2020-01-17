@@ -1,4 +1,6 @@
 <?php
+namespace dblanchet\proj4\model;
+
 class MemberManager extends Manager
 {
     public function addMember(string $pseudo, string $email, string $password)

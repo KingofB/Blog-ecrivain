@@ -6,8 +6,8 @@ require_once('model/MemberManager.php');
 
 function article()
 {
-    $articleManager = new ArticleManager();
-    $commentManager = new CommentManager();
+    $articleManager = new \dblanchet\proj4\model\ArticleManager();
+    $commentManager = new \dblanchet\proj4\model\CommentManager();
     $article = $articleManager->getArticle($_GET['article_id']);
     $comments = $commentManager->getComments($_GET['article_id']);
     require('view/commentView.php');
@@ -15,7 +15,7 @@ function article()
 
 function home()
 {
-    $articleManager = new ArticleManager();
+    $articleManager = new \dblanchet\proj4\model\ArticleManager();
     $last_3_articles = $articleManager->getThreeLastsArticles();
     $articles_4_to_6 = $articleManager->getLastArticlesFourToSix();
     $archives = $articleManager->getArchives();
@@ -24,8 +24,8 @@ function home()
 
 function comment($article_id, $pseudo, $content)
 {
-    $commentManager = new CommentManager();
-    $memberManager = new MemberManager();
+    $commentManager = new \dblanchet\proj4\model\CommentManager();
+    $memberManager = new \dblanchet\proj4\model\MemberManager();
     $pseudo = strtolower(htmlspecialchars($pseudo));
     $respPseudo = $memberManager->pseudoExists($pseudo);
     if ($respPseudo === 1) {
@@ -60,7 +60,7 @@ function connection()
 function register(): array
 {
     $errors = [];
-    $memberManager = new MemberManager();
+    $memberManager = new \dblanchet\proj4\model\MemberManager();
 
     $error = checkPseudo();
     if (null !== $error) {
@@ -95,7 +95,7 @@ function register(): array
 
 function checkPseudo(): ?string
 {
-    $memberManager = new MemberManager();
+    $memberManager = new \dblanchet\proj4\model\MemberManager();
 
     if (!empty($_POST['pseudo'])) {
         $pseudoCheck = strtolower($_POST['pseudo']);
@@ -141,7 +141,7 @@ function checkRGPD(): ?string
 
 function member($pseudo)
 {
-    $memberManager = new MemberManager();
+    $memberManager = new \dblanchet\proj4\model\MemberManager();
     $member = $memberManager->getMember($pseudo);
     $_SESSION['pseudo'] = $member['pseudo'];
     $_SESSION['email'] = $member['email'];
